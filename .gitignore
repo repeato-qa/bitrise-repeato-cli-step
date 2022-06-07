@@ -1,0 +1,7 @@
+.bitrise*
+.gows.user.yml
+repeato-cli*
+workspace-*
+resources
+.DS_store
+_tmp
