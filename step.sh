@@ -2,30 +2,41 @@
 set -ex
 
 THIS_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo "Workspace Path: ${workspace_dir}"
+echo "Workspace Repo: ${workspace_repo_url}"
 
+# install relevant repeato cli based on machine types
 MACHINE_TYPE=`uname -m`
 if [ ${MACHINE_TYPE} == 'arm64' ]; then
-  curl https://www.repeato.app/releases/repeato-cli-1.0.0-mac-arm.zip -o repeato-cli.zip
+  curl -q -s https://www.repeato.app/releases/repeato-cli-1.0.0-mac-arm.zip -o repeato-cli.zip
 else
-  curl https://www.repeato.app/releases/repeato-cli-1.0.0-mac.zip -o repeato-cli.zip
+  curl -q -s https://www.repeato.app/releases/repeato-cli-1.0.0-mac.zip -o repeato-cli.zip
 fi
 
+# setup workspace and repeato cli tool
 rm -rf repeato-cli
-unzip repeato-cli.zip -d repeato-cli/
+unzip -qq repeato-cli.zip -d repeato-cli/
 rm -rf workspace-tests
-git clone "https://github.com/ahmedmukhtar1133/repeato-testing-workspace.git" workspace-tests
+git clone ${workspace_repo_url} workspace-tests
 cp -r repeato-cli/resources/ ./resources
 
-cd repeato-cli
-node testrun.js --workspaceDir "${workspace_dir}" --batchId 0
+# configure specific node version
+curl -q -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" >/dev/null 2>&1 # This loads nvm
+nvm install 14.18 >/dev/null 2>&1
+nvm use 14.18 >/dev/null 2>&1
 
-#
+# start repeato batch run tests
+rm -rf batch-report
+cd repeato-cli
+node testrun.js --workspaceDir "../workspace-tests" --batchId 0 --outputDir "../batch-report"
+ls
+cd .. && ls
+
+
 # --- Export Environment Variables for other Steps:
-# You can export Environment Variables for other Steps with
-#  envman, which is automatically installed by `bitrise setup`.
-# A very simple example:
-envman add --key REPEATO_REPORT --value '/report/path/fake'
+envman add --key REPEATO_REPORT --value "${THIS_SCRIPT_DIR}/batch-report"
+
 # Envman can handle piped inputs, which is useful if the text you want to
 # share is complex and you don't want to deal with proper bash escaping:
 #  cat file_with_complex_input | envman add --KEY REPEATO_REPORT

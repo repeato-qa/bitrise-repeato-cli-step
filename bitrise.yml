@@ -29,7 +29,8 @@ workflows:
         title: Step Test
         run_if: true
         inputs:
-        - workspace_dir: ../workspace-tests
+        - workspace_repo_url: https://github.com/repeato-qa/demo-workspace.git
+        - batch_id: 0
     - script:
         inputs:
         - content: |

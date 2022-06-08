@@ -64,14 +64,19 @@ toolkit:
 
 
 inputs:
-  - workspace_dir:
+  - workspace_repo_url:
     opts:
-      title: "Input Workspace dir path"
-      summary: Workspace dir path for repeato cli tests.
+      title: "Workspace Git Repository URL"
+      summary: Repeato CLI need workspace path for setting up the workspace before executing batch.
+      is_required: true
+  - batch_id: 0
+    opts:
+      title: "Repeato Batch ID"
+      summary: Provide batch id for the tests execution.
       is_required: true
 
 outputs:
   - REPEATO_REPORT:
     opts:
-      title: "Repeato Report"
-      summary: Output path for report of executed tests.
+      title: "Repeato Batch Report Path"
+      summary: Repeato batch report path of executed tests.
