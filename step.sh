@@ -4,7 +4,20 @@ set -ex
 THIS_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "Workspace Path: ${workspace_dir}"
 
-cd $THIS_SCRIPT_DIR/repeato-cli
+MACHINE_TYPE=`uname -m`
+if [ ${MACHINE_TYPE} == 'arm64' ]; then
+  curl https://www.repeato.app/releases/repeato-cli-1.0.0-mac-arm.zip -o repeato-cli.zip
+else
+  curl https://www.repeato.app/releases/repeato-cli-1.0.0-mac.zip -o repeato-cli.zip
+fi
+
+rm -rf repeato-cli
+unzip repeato-cli.zip -d repeato-cli/
+rm -rf workspace-tests
+git clone "https://github.com/ahmedmukhtar1133/repeato-testing-workspace.git" workspace-tests
+cp -r repeato-cli/resources/ ./resources
+
+cd repeato-cli
 node testrun.js --workspaceDir "${workspace_dir}" --batchId 0
 
 #
