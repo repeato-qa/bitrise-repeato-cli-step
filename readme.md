@@ -4,8 +4,6 @@
 
 Run repeato recorded tests in bitrise workflow.
 
-<details>
-<summary>Description</summary>
 
 Run repeato tests on a virtual Android or IOS device. Once some basic inputs are set, the Step checks the requirements, downloads the workspace before executing the tests.
 
@@ -24,14 +22,14 @@ We recommend that you also add **Wait for Android emulator** Step (in case of an
 
 ### Demo Pipeline
 Here is the our demo pipeline on Bitrise, which we've setup for our Step testing. Below pipline is based on `hello-world-flutter-app`:
- - [AVD Manager](https://www.bitrise.io/integrations/steps/avd-manager) is our first Step, we've set the Step inputs based on the our `repeato-workspace` (same as of recording emulator).
- - [Git Clone Repository](https://www.bitrise.io/integrations/steps/git-clone)
- - [Flutter Install](https://www.bitrise.io/integrations/steps/flutter-installer) as our app is flutter based so we must need to install flutter on Bitrise VM.
- - [Bitrise Cache pull](https://www.bitrise.io/integrations/steps/cache-pull)
- - [Bitrise Cache push](https://www.bitrise.io/integrations/steps/cache-push)
- - [Wait For Androind Emulator](https://www.bitrise.io/integrations/steps/wait-for-android-emulator) as next step needs booted emulator for app install on emulator so we've added this step to make sure next step have booted emulator.
- - [Script](https://www.bitrise.io/integrations/steps/script) - As our next final Repeato step needs fully ready & configured emulator, we are using commands for building the APK (`flutter build apk --split-per-abi`) and sending to emulator using `adb install` (make sure you send/install the apk compatible to your emulator settings `x86_64 or arm64` etc...). You might have to configure different step for making the build and sending to device (depending upon your APP) - See `Useful links` section below. 
- - [Repeato Cli Integration Step](https://github.com/repeato-qa/bitrise-repeato-cli-step) Set the required inputs needed for tests execution, check the `configuration section` below. This step will provide you the ENV Varialbe `REPEATO_REPORT` for tests reports which you can use for uploading reports to any 3rd party serivce of your preference. 
+ 1. [AVD Manager](https://www.bitrise.io/integrations/steps/avd-manager) is our first Step, we've set the Step inputs based on the our `repeato-workspace` (same as of recording emulator).
+ 2. [Git Clone Repository](https://www.bitrise.io/integrations/steps/git-clone)
+ 3. [Flutter Install](https://www.bitrise.io/integrations/steps/flutter-installer) as our app is flutter based so we must need to install flutter on Bitrise VM.
+ 4. [Bitrise Cache pull](https://www.bitrise.io/integrations/steps/cache-pull)
+ 5. [Bitrise Cache push](https://www.bitrise.io/integrations/steps/cache-push)
+ 6. [Wait For Androind Emulator](https://www.bitrise.io/integrations/steps/wait-for-android-emulator) as next step needs booted emulator for app install on emulator so we've added this step to make sure next step have booted emulator.
+ 7. [Script](https://www.bitrise.io/integrations/steps/script) - As our next final Repeato step needs fully ready & configured emulator, we are using commands for building the APK (`flutter build apk --split-per-abi`) and sending to emulator using `adb install` (make sure you send/install the apk compatible to your emulator settings `x86_64 or arm64` etc...). You might have to configure different step for making the build and sending to device (depending upon your APP) - See `Useful links` section below. 
+ 8. [Repeato Cli Integration Step](https://github.com/repeato-qa/bitrise-repeato-cli-step) Set the required inputs needed for tests execution, check the `configuration section` below. This step will provide you the ENV Varialbe `REPEATO_REPORT` for tests reports which you can use for uploading reports to any 3rd party serivce of your preference. 
 
 ### Useful links
 - [Getting started with AVD Manager](https://www.bitrise.io/integrations/steps/avd-manager/)

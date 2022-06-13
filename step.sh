@@ -6,14 +6,13 @@ echo "Workspace Repo: ${workspace_repo_url}"
 
 # install relevant repeato cli based on machine types
 MACHINE_TYPE=`uname -m`
-if [ ${MACHINE_TYPE} == 'arm64' ]; then
-  curl -q -s https://www.repeato.app/releases/repeato-cli-1.0.0-mac-arm.zip -o repeato-cli.zip
-else
-  curl -q -s https://www.repeato.app/releases/repeato-cli-1.0.0-mac.zip -o repeato-cli.zip
-fi
+## Not using below command because it outputs our release data on bash
+# RELEASE_DATA=$(curl -q -s https://api.github.com/repos/repeato-qa/repeato-cli-prebuilt/releases) 
+RELEASE_URL=$(node ${THIS_SCRIPT_DIR}/scripts/latest-cli-release.js "${MACHINE_TYPE}" "${RELEASE_DATA}") 
+wget -q "${RELEASE_URL}" -O repeato-cli.zip
 
 # setup workspace and repeato cli tool
-rm -rf repeato-cli
+rm -rf repeato-cli 
 unzip -qq repeato-cli.zip -d repeato-cli/
 rm -rf workspace-tests
 git clone ${workspace_repo_url} workspace-tests
@@ -29,7 +28,8 @@ nvm use 14.18 >/dev/null 2>&1
 # start repeato batch run tests
 rm -rf batch-report
 cd repeato-cli
-node testrun.js --workspaceDir "../workspace-tests" --batchId 0 --outputDir "${THIS_SCRIPT_DIR}/batch-report"
+# node testrun.js --workspaceDir "../workspace-tests" --batchId 0 --outputDir "../batch-report"
+node testrun.js --licenseKey "unlimited82eac20c3f31aa0d3d" --workspaceDir "../workspace-tests" --batchId "e2313480-9002-5ce5-96e9-aecdbf36475b" --outputDir "../batch-report" --logLevel DEBUG
 ls
 cd .. && ls
 
