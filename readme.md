@@ -4,8 +4,6 @@
 
 Run repeato recorded tests in bitrise workflow.
 
-<details>
-<summary>Description</summary>
 
 Run repeato tests on a virtual Android or IOS device. Once some basic inputs are set, the Step checks the requirements, downloads the workspace before executing the tests.
 
