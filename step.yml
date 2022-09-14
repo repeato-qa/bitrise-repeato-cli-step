@@ -13,9 +13,9 @@ summary: |
   Step for executing repeato tests.
 description: |
   You can execute repeato tests before making your app build.
-website: https://github.com/ahmedmukhtar1133/bitrise-step-repeato-cli
-source_code_url: https://github.com/ahmedmukhtar1133/bitrise-step-repeato-cli
-support_url: https://github.com/ahmedmukhtar1133/bitrise-step-repeato-cli/issues
+website: https://github.com/repeato-qa/bitrise-repeato-cli-step.git
+source_code_url: https://github.com/repeato-qa/bitrise-repeato-cli-step.git
+support_url: https://github.com/repeato-qa/bitrise-repeato-cli-step/issues
 host_os_tags:
   - osx-10.10
   - ubuntu-16.04
