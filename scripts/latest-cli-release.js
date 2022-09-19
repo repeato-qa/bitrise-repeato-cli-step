@@ -6,10 +6,11 @@ const releaseData = args[1]; // we might recieve release data as param
 const releaseName = `repeato-cli-mac${arch === 'arm64' ? '-arm' : ''}.zip`;
 
 const getDownloadURL = (data) => {
-  const releases = JSON.parse(data);
-  const latestRelease = releases[0]; // at first index latest release data
+  const latestRelease = JSON.parse(data);
+  console.log('LatestReleaseFound', latestRelease, releaseName)
+  // const latestRelease = releases[0]; // at first index latest release data
   const foundRelease = latestRelease?.assets?.find((release) => release.label === releaseName);
-  console.log(foundRelease.browser_download_url); // this will output the url for curl to download release
+  console.log('ReleaseDownloadUR', foundRelease.browser_download_url); // this will output the url for curl to download release
   return foundRelease.browser_download_url;
 }
 
@@ -22,7 +23,7 @@ const parseData = (data) => {
   const options = {
     hostname: 'api.github.com',
     port: 443,
-    path: '/repos/repeato-qa/repeato-cli-prebuilt/releases',
+    path: '/repos/repeato-qa/repeato-cli-prebuilt/releases/latest',
     method: 'GET',
     headers: { 'User-Agent': 'Repeato-Bitrise-Step' }
   };
