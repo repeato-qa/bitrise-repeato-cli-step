@@ -32,6 +32,7 @@ Here is the our demo pipeline on Bitrise, which we've setup for our Step testing
  7. [Script](https://www.bitrise.io/integrations/steps/script) - As our next final Repeato step needs fully ready & configured emulator, we are using commands for building the APK (`flutter build apk --split-per-abi`) and sending to emulator using `adb install` (make sure you send/install the apk compatible to your emulator settings `x86_64 or arm64` etc...). You might have to configure different step for making the build and sending to device (depending upon your APP). Also make sure before next step workspace-tests are cloned (if they are in separate repository) - See `Useful links` section below.  
  8. [Repeato Test Runner Step](https://github.com/repeato-qa/bitrise-repeato-cli-step) Set the required inputs needed for tests execution, check the `configuration section` below. This step will provide you the ENV Varialbe `REPEATO_REPORT` for tests reports which you can use for uploading reports to any 3rd party serivce of your preference. 
 9. [Deploy to Bitrise.io - Artifacts](https://www.bitrise.io/integrations/steps/deploy-to-bitrise-io) Repeato step copies the `batch-reports` zip file and JUnit XML file in bitrise upload directory(`$BITRISE_DEPLOY_DIR`). You can use this step to upload the reports in artifacts section for downloading on finish. You may also use [FTP Upload](bitrise.io/integrations/steps/ftp-upload) or [Deploy to S3](https://www.bitrise.io/integrations/steps/amazon-s3-deploy) step for uploading reports on FTP, S3.
+10. [Export test results to Test Reports add-on](https://www.bitrise.io/integrations/steps/custom-test-results-export) This Step is to export the results to the Test Reports add-on. The Step creates the required test-info.json file and deploys the test results in the correct directory for export.
 
 ### Useful links
 - [Getting started with AVD Manager](https://www.bitrise.io/integrations/steps/avd-manager/)
@@ -57,7 +58,7 @@ You can also run this step directly with [Bitrise CLI](https://github.com/bitris
 
 | Key | Description | Flags | Default |
 | --- | --- | --- | --- |
-| `repeato_cli_version` | Set the repeato CLI version compatible to your workspace tests. | required | `1.2.1` |
+| `repeato_cli_version` | Set the repeato CLI version compatible to your workspace tests. | required | `latest` |
 | `workspace_path` | Repeato test runner need workspace path for setting up the workspace before executing batch. | required | $BITRISE_SOURCE_DIR |
 | `batch_id` | Set batch id for the tests execution. | required | `0` |
 | `license_key` | Set license key for the tests execution. | required | `none` |
