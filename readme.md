@@ -1,13 +1,13 @@
-# Repeato Test Runner Step
+# Repeato Test Runner Step for Bitrise
 
 <!-- [![Step changelog](https://shields.io/github/v/release/bitrise-steplib/steps-avd-manager?include_prereleases&label=changelog&color=blueviolet)](https://github.com/repeato-qa/bitrise-repeato-cli-step.git/releases) -->
 
-Run tests created with [Repeato Studio](https://www.repeato.app) as part of your bitrise workflow.
+Run tests created with [Repeato Studio](https://www.repeato.app) as part of your Bitrise workflow.
 
 ## 🏁 Get started
 
 Add this step to your workflow in the [Bitrise Workflow Editor](https://devcenter.bitrise.io/steps-and-workflows/steps-and-workflows-index/).
-You can also run this step directly with [Bitrise CLI](https://github.com/bitrise-io/bitrise).
+You can also run this step directly with [bitrise CLI](https://github.com/bitrise-io/bitrise).
 
 This step takes care of checking the system requirements as well as installing and starting the headless Repeato CLI testrunner. After running the tests, it sets the environment variables which can be used in consecutive steps.
 
