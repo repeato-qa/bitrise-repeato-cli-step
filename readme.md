@@ -31,7 +31,7 @@ For iOS Simulator there isn't any step, that starts the simulator, as the `xcode
 | `workspace_path` | Repeato test runner need workspace path for setting up the workspace before executing batch. | required | $BITRISE_SOURCE_DIR |
 | `batch_id` | Set batch id for the tests execution. | required | `0` |
 | `license_key` | Set license key for the tests execution. | required | `none` |
-| `log_level` | Set log level. | required | `DEBUG` |
+| `log_level` | Set log level. | required | `INFO` |
 
 
 ### Outputs
@@ -72,4 +72,3 @@ Here is the our demo pipeline on Bitrise, which we've setup for our step testing
 We welcome [pull requests](https://github.com/repeato-qa/bitrise-repeato-cli-step/pulls) and [issues](https://github.com/repeato-qa/bitrise-repeato-cli-step/issues) against this repository.
 
 For pull requests, work on your changes in a forked repository and use the Bitrise CLI to [run step tests locally](https://devcenter.bitrise.io/bitrise-cli/run-your-first-build/).
-
