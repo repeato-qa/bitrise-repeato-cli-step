@@ -31,6 +31,7 @@ For iOS Simulator there isn't any step, that starts the simulator, as the `xcode
 | `workspace_path` | Repeato test runner need workspace path for setting up the workspace before executing batch. | required | $BITRISE_SOURCE_DIR |
 | `batch_id` | Set batch id for the tests execution. | required | `0` |
 | `license_key` | Set license key for the tests execution. | required | `none` |
+| `log_level` | Set log level. | required | `DEBUG` |
 
 
 ### Outputs

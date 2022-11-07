@@ -78,6 +78,15 @@ inputs:
       summary: Provide licensse key for the tests execution.
       is_required: true
       is_sensitive: true
+  - log_level: "INFO"
+    opts:
+      title: Log Level
+      summary: Switch to DEBUG if you have troubles running your batches. This prints a lot of additional information to the log.
+      is_required: true
+      value_options:
+      - "WARN"
+      - "INFO"
+      - "DEBUG"
 
 outputs:
   - REPEATO_REPORT:

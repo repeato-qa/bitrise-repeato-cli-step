@@ -7,7 +7,7 @@ app:
   - LICENSE_KEY: $LICENSE_KEY
   # If you want to share this step into a StepLib
   - BITRISE_STEP_ID: repeato-cli
-  - BITRISE_STEP_VERSION: "0.0.1"
+  - BITRISE_STEP_VERSION: "0.0.2"
   - BITRISE_STEP_GIT_CLONE_URL: https://github.com/ahmedmukhtar1133/bitrise-step-repeato-cli.git
   - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
 
@@ -33,6 +33,7 @@ workflows:
         - workspace_path: workspace-tests
         - batch_id: 0
         - license_key: $LICENSE_KEY
+        - log_level: INFO
     - script:
         inputs:
         - content: |

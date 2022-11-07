@@ -14,7 +14,7 @@ nvm use $REQUIRED_NODE_VERSION >/dev/null 2>&1
 # start repeato batch run tests & upload report
 rm -rf batch-report
 sudo npm i -g @repeato/cli-testrunner@${repeato_cli_version}
-cli-testrunner --licenseKey "${license_key}" --workspaceDir "${workspace_path}" --batchId "${batch_id}" --outputDir "./batch-report" --logLevel DEBUG
+cli-testrunner --licenseKey "${license_key}" --workspaceDir "${workspace_path}" --batchId "${batch_id}" --outputDir "./batch-report" --logLevel "${log_level}"
 zip -r batch_report_$batch_id.zip batch-report
 cp batch_report_$batch_id.zip $BITRISE_DEPLOY_DIR/batch_report_$batch_id.zip
 cp jUnitReport.xml $BITRISE_DEPLOY_DIR/UnitTest.xml
